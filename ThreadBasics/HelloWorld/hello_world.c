@@ -32,7 +32,7 @@
 /* A thread callback fn must have following prototypes 
  * void *(*thread_fn)(void *)
  * */
-static void *
+/*static void *
 thread_fn_callback(void *arg) {
 
 	char *input = (char *)arg;
@@ -40,6 +40,23 @@ thread_fn_callback(void *arg) {
 	while(1) {	
 		printf("input string = %s\n", input);
 		sleep(1);
+	}
+}*/
+
+static void *
+thread_fn_callback(void *arg) {
+
+	int t = 0;
+
+	char *input = (char *)arg;
+
+	while(1) {	
+		printf("input string = %s\n", input);
+		sleep(1);
+		t++;
+
+		if(t == 5)
+			break;
 	}
 }
 
@@ -75,7 +92,8 @@ main(int argc, char **argv){
 
 	thread1_create();
 	printf("main fn paused\n");
-	pause();
+	/*pause();*/
+	pthread_exit(0); /* Permits child thread to complete. */
 	return 0;
 }
 
