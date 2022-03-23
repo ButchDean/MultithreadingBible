@@ -93,7 +93,7 @@ main(int argc, char **argv){
 	thread1_create();
 	printf("main fn paused\n");
 	/*pause();*/
-	pthread_exit(0); /* Permits child thread to complete. */
+	pthread_exit(0); /* Permits child thread(s) to complete. */
 	return 0;
 }
 
