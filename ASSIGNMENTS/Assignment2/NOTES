@@ -1,0 +1,13 @@
+Write a program which takes a positive number input from the user (N) and output the following as an example:
+
+5
+4
+3
+2
+1
+
+for input 5. This demonstrates "Map-Reduce" that is a Divide and Conquer 
+paradigm where the parent thread maps work to worker threads from the 
+same data set (called "mappers") each having a subset of that data to work on.
+When the mappers are done with their work the parent "reducer" takes those 
+results from the mappers and aggregates them for the final outcome.
