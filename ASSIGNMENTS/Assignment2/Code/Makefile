@@ -1,7 +1,8 @@
 FILE = map-reduce
+LIB = -lpthread
 
 all:
-	gcc $(FILE).c -o $(FILE)
+	gcc $(FILE).c -o $(FILE) $(LIB)
 
 .PHONY:
 
