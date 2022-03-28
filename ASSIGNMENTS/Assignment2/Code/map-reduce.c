@@ -1,17 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <unistd.h>
-#include <errno.h>
 
 #define MAX_THREADS 16
 
+/* Callback providing simple increment calculation */
 static void* callback(void* arg) {
 
-    int* num = calloc(1, sizeof(int));
-    *num = *(int*)arg++;
+    int num =  *(int*)arg;
 
-    return (void *)num;
+    free(arg);
+
+    int *result = calloc(1, sizeof(int));
+    *result = ++num;
+
+    return (void *)result;
 }
 
 /* Thread setup facilitators */
@@ -19,11 +22,14 @@ void create_thread(pthread_t* pthread_handle, int t_id) {
 
     pthread_attr_t attr;
 
+    int *_th_id = calloc(1, sizeof(int));
+	*_th_id = t_id;
+
     pthread_attr_init(&attr);
 
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
-    int rc = pthread_create(pthread_handle, &attr, callback, (void *)&t_id);
+    int rc = pthread_create(pthread_handle, &attr, callback, (void *)_th_id);
 
     if(rc != 0) {
         printf("Thread creation failed with error code: %d\n", rc);
