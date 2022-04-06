@@ -5,7 +5,7 @@ OBJ = gluethread/glthread.o *.o
 OBJDEPS = rtm_publisher.o threaded_subsciber.o utils.o rt.o notif.o gluethread/glthread.o
 EXE = notificationchain
 
-all:
+all: $(OBJDEPS)
 	$(CC) $(OBJDEPS) -o $(EXE) $(LIB)
 
 gluethread/%.o: gluethread/%.c
